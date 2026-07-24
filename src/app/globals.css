@@ -1,0 +1,246 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+/* @font-face {
+  font-family: "KaiTi";
+  src: url("https://www.buddhistform.com/fonts/KaiTi.ttf") format("truetype");
+}
+
+body {
+  font-family: "KaiTi";
+} */
+
+.innertext {
+  position: absolute;
+  left: 20px;
+  right: 0;
+  text-align: center;
+  align-items: center;
+  z-index: 9999;
+  top: 38%;
+  bottom: 50%;
+}
+
+.innertext p,
+.container p {
+  font-size: 1.5rem;
+  font-weight: 400;
+  display: flex;
+  padding: 0px 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.container #name2 {
+  position: absolute;
+  top: 0%;
+  left: 28%;
+  top: 40%;
+  font-size: 2rem !important;
+}
+
+.container #name1 {
+  position: absolute;
+  top: 40%;
+  right: 36%;
+  font-size: 2rem !important;
+}
+
+.innertext #name4 {
+  bottom: 0px;
+}
+
+.outertext span {
+  font-size: 1.8rem; /* +20% from 1.5rem — Form 1 side text */
+  font-weight: 400;
+}
+
+@media (min-width: 768px) {
+  .sidebar {
+    position: initial !important;
+  }
+}
+
+::-webkit-scrollbar {
+  display: none;
+  /* Safari and Chrome */
+}
+
+.innertext #name5 {
+  /* margin-left: -20px; */
+  display: flex;
+  flex-wrap: wrap;
+  position: absolute;
+  left: 22%;
+  height: 240px;
+  font-size: 1.5rem;
+  gap: 6px;
+  top: 30%;
+}
+
+.innertext #name5 span {
+  width: fit-content;
+}
+
+.outertext #name3 {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 10px;
+}
+
+.outertext #name4 {
+  position: absolute;
+  left: 0px;
+  bottom: 80px;
+}
+
+.outertext div {
+  display: flex;
+  flex-direction: column;
+}
+
+#frame2>#name1 {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 59%;
+  left: 7% !important;
+  font-size: 1.8rem;
+  height: 260px;
+  flex-wrap: wrap;
+}
+
+#frame2 #name2 {
+  display: flex;
+  flex-direction: column;
+  bottom: 2%;
+  position: absolute;
+  left: 20px !important;
+  font-size: 1.8rem;
+}
+
+#frame3 #name1 {
+  position: absolute;
+  top: 60%;
+  flex-direction: column;
+  display: flex;
+  left: 10%;
+  font-size: 2.1rem;
+}
+
+#frame3 #name2 {
+  position: absolute;
+  flex-direction: column;
+  display: flex;
+  left: 10%;
+  font-size: 1.7rem;
+  bottom: 4%;
+}
+
+#frame3 #space3 {
+  position: absolute;
+  top: 39%;
+  left: 62%;
+  font-size: 2rem;
+}
+.printModalContainer #frame3 #space1 {
+  left: 38%;
+}
+.printModalContainer #frame3 #space3 ,.printModalContainer #frame3 #space2 {
+  left: 56.4%;
+}
+
+#frame5 #name1 {
+  display: flex;
+  /* justify-content: center; */
+  /* height: 40%; */
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  top: 22%;
+  left: 40%;
+  font-size: 2.5rem;
+}
+
+.form4 {
+  font-size: 1.8rem;
+}
+
+.form4 tr {
+  height: 60px;
+}
+
+.form4 td {
+  padding: 16px;
+}
+
+#frame3 #template1,
+#frame3 #template2 {
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  top: 39%;
+  left: 45%;
+  position: absolute;
+}
+
+#frame3 #template2 {
+  left: 65% !important;
+  right: 45% !important;
+}
+
+#frame3 #template3,
+#frame3 #template4 {
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  bottom: 26%;
+  left: 45%;
+  position: absolute;
+}
+
+#frame3 #template4 {
+  left: 65% !important;
+  right: 45% !important;
+}
+
+#frame3 #space1 {
+  position: absolute;
+  top: 59%;
+  left: 42%;
+  font-size: 1.2rem;
+}
+
+
+#frame3 #space2 {
+  position: absolute;
+  top: 57%;
+  left: 62%;
+  font-size: 1.2rem;
+}
+
+.spinner {
+  display: none !important;
+}
+
+#nprogress .bar {
+  z-index: 99999999 !important;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.show-pdf {
+  display: none;
+}
