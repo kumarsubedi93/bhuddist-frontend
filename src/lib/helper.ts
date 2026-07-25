@@ -8,7 +8,7 @@ import { InputFields } from "@/components/createFrames/helper";
  * @param {Object} body - The body of the request (for methods like POST and PUT).
  * @returns {Promise} - A promise that resolves to the response data.
  */
-export const BASE_URL = process.env.NEXT_PUBLIC_API
+export const BASE_URL = "https://bhuddist-backend-xz1j-nubqd6l0n-subedi99635-gmailcoms-projects.vercel.app"
 
 export async function apiCall(
   url: string,
