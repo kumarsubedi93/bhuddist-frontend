@@ -43,14 +43,14 @@ body {
   top: 0%;
   left: 28%;
   top: 40%;
-  font-size: 2rem !important;
+  font-size: 2rem;
 }
 
 .container #name1 {
   position: absolute;
   top: 40%;
   right: 36%;
-  font-size: 2rem !important;
+  font-size: 2rem;
 }
 
 .innertext #name4 {
@@ -59,7 +59,21 @@ body {
 
 .outertext span {
   font-size: 1.8rem; /* +20% from 1.5rem — Form 1 side text */
-  font-weight: 400;
+  font-weight: 700;
+  font-family: "Songti SC", "STSong", "SimSun", "NSimSun", serif;
+}
+
+/* Song/Ming typeface for every name field across all forms (overrides the KaiTi body default) */
+.container #name1,
+.container #name2,
+.innertext #name5,
+#frame2 #name1,
+#frame2 #name2,
+#frame3 #name1,
+#frame3 #name2,
+#frame5 #name1 {
+  font-family: "Songti SC", "STSong", "SimSun", "NSimSun", serif;
+  font-weight: 700;
 }
 
 @media (min-width: 768px) {
@@ -81,12 +95,23 @@ body {
   left: 22%;
   height: 240px;
   font-size: 1.5rem;
-  gap: 6px;
+  gap: 4px; /* was 6px — 30% closer between wrapped columns */
   top: 30%;
 }
 
 .innertext #name5 span {
   width: fit-content;
+}
+
+/* 30% tighter vertical spacing between the stacked (vertical) character spans
+   of name1-name5 in Frame1 — each name renders as one <span> per character
+   stacked in a flex column, so line-height controls the gap between them. */
+.container #name1 span,
+.container #name2 span,
+.outertext #name3 span,
+.outertext #name4 span,
+.innertext #name5 span {
+  line-height: 1.1;
 }
 
 .outertext #name3 {
@@ -99,6 +124,7 @@ body {
   position: absolute;
   left: 0px;
   bottom: 80px;
+  margin-bottom: -59px;
 }
 
 .outertext div {

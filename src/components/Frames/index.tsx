@@ -1,5 +1,26 @@
 import { capitalizeFirstLetter, getChineName } from "@/lib/helper";
 
+// Names of 2-3 chars render 30% larger, 4 chars render 20% larger; 5+ chars keep the current size.
+// Tailwind's JIT compiler only picks up complete literal class strings found in this file, so
+// each field's two scaled tiers are spelled out in full here rather than built via interpolation.
+const FONT_SCALE_CLASSES = {
+  name1: { tier1: "!text-[3rem]", tier2: "!text-[2.4rem]" }, // base 2rem
+  name2: { tier1: "!text-[3rem]", tier2: "!text-[2.4rem]" }, // base 2rem
+  name5: { tier1: "!text-[3rem]", tier2: "!text-[2.4rem]" }, // base 2rem
+  name3: { tier1: "[&_span]:!text-[3rem]", tier2: "[&_span]:!text-[2.4rem]" }, // base 1.8rem
+  name4: { tier1: "[&_span]:!text-[3rem]", tier2: "[&_span]:!text-[2.4rem]" }, // base 1.8rem
+} as const;
+
+const getScaledFontClass = (
+  field: keyof typeof FONT_SCALE_CLASSES,
+  len: number
+) => {
+  const classes = FONT_SCALE_CLASSES[field];
+  if (len >= 1 && len <= 3) return classes.tier1;
+  if (len === 4) return classes.tier2;
+  return "";
+};
+
 export const Frame1 = ({
   name1,
   name2,
@@ -9,8 +30,21 @@ export const Frame1 = ({
   className,
 }: any) => {
   const hasName4 = Boolean(name4?.trim?.());
-  const name3Len = name3?.split("")?.length ?? 0;
-  const name4Len = name4?.split("")?.length ?? 0;
+
+  // Whitespace-stripped lengths, so spaces anywhere in the source data (leading/trailing, or
+  // padding inserted between characters, e.g. "张   如    ") don't inflate the perceived character
+  // count. Used for both the font-scale tier and the position-threshold branching (name1-5).
+  const name1TrimmedLen = name1?.replace?.(/\s+/g, "")?.length ?? 0;
+  const name2TrimmedLen = name2?.replace?.(/\s+/g, "")?.length ?? 0;
+  const name3TrimmedLen = name3?.replace?.(/\s+/g, "")?.length ?? 0;
+  const name4TrimmedLen = name4?.replace?.(/\s+/g, "")?.length ?? 0;
+  const name5TrimmedLen = name5?.replace?.(/\s+/g, "")?.length ?? 0;
+
+  const name1FontClass = getScaledFontClass("name1", name1TrimmedLen);
+  const name2FontClass = getScaledFontClass("name2", name2TrimmedLen);
+  const name3FontClass = getScaledFontClass("name3", name3TrimmedLen);
+  const name4FontClass = getScaledFontClass("name4", name4TrimmedLen);
+  const name5FontClass = getScaledFontClass("name5", name5TrimmedLen);
 
   return (
     <div
@@ -23,14 +57,14 @@ export const Frame1 = ({
         <div
           id="name3"
           className={`${
-            name3Len < 5
-              ? "!left-[10px]"
-              : name3Len < 10
+            name3TrimmedLen < 5
+              ? `!left-[10px] ${name3FontClass}`
+              : name3TrimmedLen < 10
               ? "!left-[-40px] [&_span]:!text-[1.5rem]"
               : "!left-[-60px] [&_span]:!text-[1.25rem]"
           } ${
             hasName4
-              ? name3Len < 5
+              ? name3TrimmedLen < 5
                 ? "!bottom-[180px]"
                 : "!bottom-[220px]"
               : "!bottom-0"
@@ -44,9 +78,9 @@ export const Frame1 = ({
           <div
             id="name4"
             className={`${
-              name4Len < 5
-                ? "!left-[10px]"
-                : name4Len < 10
+              name4TrimmedLen < 5
+                ? `!left-[10px] ${name4FontClass}`
+                : name4TrimmedLen < 10
                 ? "!left-[-40px] [&_span]:!text-[1.5rem]"
                 : "!left-[-50px] [&_span]:!text-[1.25rem]"
             }`}
@@ -62,7 +96,7 @@ export const Frame1 = ({
           <p
             id="name5"
             className={`${
-              name5?.split("").length > 7 ? "" : "!left-[28%] !text-[2rem]"
+              name5TrimmedLen > 7 ? "" : `!left-[28%] ${name5FontClass || "!text-[2rem]"}`
             }`}
           >
             {name5?.split?.("")?.map?.((char: string) => (
@@ -73,22 +107,14 @@ export const Frame1 = ({
       ) : (
         <div className="container !static">
           {!name5 && (
-            <p
-              id="name1"
-              className={`${name1?.split("").length < 4 ? "!text-[2rem]" : ""}`}
-            >
+            <p id="name1" className={name1FontClass}>
               {name1?.split?.("")?.map?.((char: string) => (
                 <span key={char}>{char}</span>
               ))}
             </p>
           )}
           {!name5 && (
-            <p
-              id="name2"
-              className={`${
-                name2?.split?.("")?.length < 4 ? "!text-[2rem]" : ""
-              }`}
-            >
+            <p id="name2" className={name2FontClass}>
               {name2?.split?.("")?.map?.((char: string) => (
                 <span key={char}>{char}</span>
               ))}{" "}
