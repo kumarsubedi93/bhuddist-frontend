@@ -8,7 +8,7 @@ import { InputFields } from "@/components/createFrames/helper";
  * @param {Object} body - The body of the request (for methods like POST and PUT).
  * @returns {Promise} - A promise that resolves to the response data.
  */
-export const BASE_URL = "https://bhuddist-backend-xz1j.vercel.app"
+export const BASE_URL =  process.env.NEXT_PUBLIC_BASE_URL ||"https://bhuddist-backend-xz1j.vercel.app"
 
 export async function apiCall(
   url: string,
