@@ -45,6 +45,8 @@ export const ExportToPDF = ({
           ? "10.5in 18.5in;"
           : artId === 4
           ? "11.7in 9.5in;"
+          : artId === 1
+          ? "11.7in 11.5in;"
           : "11.7in 8.3in;"
       }
       margin: 0mm;
@@ -56,6 +58,14 @@ export const ExportToPDF = ({
       }
       .show-pdf{
         display:block !important;
+      }
+      .pdf-frame-item {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+      .pdf-page-break {
+        break-after: page;
+        page-break-after: always;
       }
     }
   `,
@@ -106,9 +116,15 @@ export const ExportToPDF = ({
           data?.map(({ artId, _id, ...rest }: any, index: number) => (
             <div
               key={_id}
-              className={`${
+              className={`pdf-frame-item ${
                 artId === 5 ? "w-[24%] pt-6" : "w-[18%] pt-10 px-4"
-              } relative mt-4`}
+              } relative mt-4 ${
+                artId === 1 &&
+                (index + 1) % 4 === 0 &&
+                index !== data.length - 1
+                  ? "pdf-page-break"
+                  : ""
+              }`}
             >
               <p
                 className={`text-5xl font-semibold absolute z-10 top-8 ${
