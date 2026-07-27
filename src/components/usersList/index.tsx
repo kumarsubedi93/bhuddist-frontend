@@ -1,8 +1,11 @@
+"use client";
+
 import React from "react";
 import { MdOutlineModeEdit } from "react-icons/md";
 import { AiOutlineFolderView } from "react-icons/ai";
 import Link from "next/link";
 import { BiCommentDetail } from "react-icons/bi";
+import ConfirmDeleteModal from "../confirmDeleteModal";
 
 interface Iuser {
   serialNumber: number;
@@ -35,6 +38,9 @@ const UsersList: React.FC<{ users: Iuser[] }> = ({ users }) => {
             <th scope="col" className="px-6 py-3">
               Summary
             </th>
+            <th scope="col" className="px-6 py-3 bg-gray-50">
+              Delete
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -61,6 +67,14 @@ const UsersList: React.FC<{ users: Iuser[] }> = ({ users }) => {
                 <Link className="flex justify-start" href={`/admin/users/${user?._id}/arts`}>
                   <BiCommentDetail size={16} />
                 </Link>
+              </td>
+              <td className="px-6 py-4 cursor-pointer">
+                <ConfirmDeleteModal
+                  title="Confirm Delete"
+                  message="Are you sure you want to delete this family? This cannot be undone."
+                  id={user._id}
+                  endpoint="/family"
+                />
               </td>
             </tr>
           ))}

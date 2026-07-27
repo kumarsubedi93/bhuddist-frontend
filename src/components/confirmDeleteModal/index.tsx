@@ -15,6 +15,7 @@ interface ConfirmDeleteModalProps {
   //   onCancel: () => void;
   //   isOpen: boolean;
   id: string;
+  endpoint?: string;
 }
 
 const ConfirmDeleteModal: React.FC<ConfirmDeleteModalProps> = ({
@@ -24,6 +25,7 @@ const ConfirmDeleteModal: React.FC<ConfirmDeleteModalProps> = ({
   //   onCancel,
   //   isOpen,
   id,
+  endpoint = "/frames",
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -38,7 +40,7 @@ const ConfirmDeleteModal: React.FC<ConfirmDeleteModalProps> = ({
   const handleSubmit = async () => {
     setIsLoading(true);
     try {
-      await apiCall(`/frames/${id}`, "DELETE");
+      await apiCall(`${endpoint}/${id}`, "DELETE");
       await new Promise((resolve) => {
         setTimeout(() => {
           router.refresh();
