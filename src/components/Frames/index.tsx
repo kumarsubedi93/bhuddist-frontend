@@ -9,6 +9,8 @@ const FONT_SCALE_CLASSES = {
   name5: { tier1: "!text-[3rem]", tier2: "!text-[2.4rem]" }, // base 2rem
   name3: { tier1: "[&_span]:!text-[3rem]", tier2: "[&_span]:!text-[2.4rem]" }, // base 1.8rem
   name4: { tier1: "[&_span]:!text-[3rem]", tier2: "[&_span]:!text-[2.4rem]" }, // base 1.8rem
+  frame2Name1: { tier1: "!text-[2.7rem]", tier2: "!text-[2.16rem]" }, // base 1.8rem
+  frame3Name1: { tier1: "!text-[3.15rem]", tier2: "!text-[2.52rem]" }, // base 2.1rem
 } as const;
 
 const getScaledFontClass = (
@@ -133,34 +135,46 @@ export const Frame2 = ({
   space2,
   space3,
   className,
-}: any) => (
-  <div
-    className={`h-120 relative bg-contain bg-no-repeat child bg-[url('../assets/image2.png')] ${
-      className ?? "w-[370px] min-h-[1000px]"
-    }`}
-    id="frame2"
-  >
+}: any) => {
+  // Whitespace-stripped length, same as Form 1, so padding in the source data
+  // doesn't inflate the perceived character count.
+  const name1TrimmedLen = name1?.replace?.(/\s+/g, "")?.length ?? 0;
+  const hasName2 = Boolean(name2?.trim?.());
+
+  // Only scale up name1 when name2 is absent — with both present, keep the current size.
+  const name1FontClass = hasName2
+    ? ""
+    : getScaledFontClass("frame2Name1", name1TrimmedLen);
+
+  return (
     <div
-      id="name2"
-      className={`${
-        name2?.split?.("")?.length < 5
-          ? "!left-[-10px]"
-          : name2?.split?.("")?.length < 10
-          ? "!left-[-40px]"
-          : "!left-[-50px]"
+      className={`h-120 relative bg-contain bg-no-repeat child bg-[url('../assets/image2.png')] ${
+        className ?? "w-[370px] min-h-[1000px]"
       }`}
+      id="frame2"
     >
-      {name2?.split?.("")?.map?.((char: string) => (
-        <span key={char}>{char}</span>
-      ))}
+      <div
+        id="name2"
+        className={`${
+          name2?.split?.("")?.length < 5
+            ? "!left-[-10px]"
+            : name2?.split?.("")?.length < 10
+            ? "!left-[-40px]"
+            : "!left-[-50px]"
+        }`}
+      >
+        {name2?.split?.("")?.map?.((char: string) => (
+          <span key={char}>{char}</span>
+        ))}
+      </div>
+      <p id="name1" className={name1FontClass}>
+        {name1?.split?.("")?.map?.((char: string) => (
+          <span key={char}>{char}</span>
+        ))}
+      </p>
     </div>
-    <p id="name1">
-      {name1?.split?.("")?.map?.((char: string) => (
-        <span key={char}>{char}</span>
-      ))}
-    </p>
-  </div>
-);
+  );
+};
 
 export const Frame3 = ({
   name1,
@@ -169,28 +183,40 @@ export const Frame3 = ({
   space1,
   space2,
   className,
-}: any) => (
-  <div
-    className={`h-120 relative bg-contain bg-no-repeat child bg-[url('../assets/image3.png')] ${
-      className ?? "w-[370px] min-h-[1000px]"
-    }`}
-    id="frame3"
-  >
-    <p id="name2">
-      {name2?.split?.("")?.map?.((char: string) => (
-        <span key={char}>{char}</span>
-      ))}
-    </p>
-    <p id="space3">{space3}</p>
-    <p id="space1">{space1}</p>
-    <p id="space2">{space2}</p>
-    <p id="name1">
-      {name1?.split?.("")?.map?.((char: string) => (
-        <span key={char}>{char}</span>
-      ))}
-    </p>
-  </div>
-);
+}: any) => {
+  // Whitespace-stripped length, same as Form 1, so padding in the source data
+  // doesn't inflate the perceived character count.
+  const name1TrimmedLen = name1?.replace?.(/\s+/g, "")?.length ?? 0;
+  const hasName2 = Boolean(name2?.trim?.());
+
+  // Only scale up name1 when name2 is absent — with both present, keep the current size.
+  const name1FontClass = hasName2
+    ? ""
+    : getScaledFontClass("frame3Name1", name1TrimmedLen);
+
+  return (
+    <div
+      className={`h-120 relative bg-contain bg-no-repeat child bg-[url('../assets/image3.png')] ${
+        className ?? "w-[370px] min-h-[1000px]"
+      }`}
+      id="frame3"
+    >
+      <p id="name2">
+        {name2?.split?.("")?.map?.((char: string) => (
+          <span key={char}>{char}</span>
+        ))}
+      </p>
+      <p id="space3">{space3}</p>
+      <p id="space1">{space1}</p>
+      <p id="space2">{space2}</p>
+      <p id="name1" className={name1FontClass}>
+        {name1?.split?.("")?.map?.((char: string) => (
+          <span key={char}>{char}</span>
+        ))}
+      </p>
+    </div>
+  );
+};
 
 export const Frame4 = ({ data, className }: any) => {
   return (
