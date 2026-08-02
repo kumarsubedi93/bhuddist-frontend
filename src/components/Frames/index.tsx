@@ -258,7 +258,7 @@ export const Frame5 = ({ name1 }: any) => (
   >
     <p
       id="name1"
-      className={`${name1?.split?.("").length <= 3 ? "!text-[4rem]" : ""}`}
+      className={`${name1?.split?.("").length <= 3 ? "!text-[5.5rem]" : ""}`}
     >
       {name1?.split?.("")?.map?.((char: string) => (
         <span key={char}>{char}</span>
