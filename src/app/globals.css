@@ -138,7 +138,7 @@ body {
   position: absolute;
   top: 59%;
   left: 7% !important;
-  font-size: 1.8rem;
+  font-size: 2.1rem;
   height: 260px;
   flex-wrap: wrap;
 }
@@ -181,14 +181,8 @@ body {
 #frame3 #space3 {
   position: absolute;
   top: 39%;
-  left: 62%;
+  left: 52.4%;
   font-size: 2rem;
-}
-.printModalContainer #frame3 #space1 {
-  left: 38%;
-}
-.printModalContainer #frame3 #space3 ,.printModalContainer #frame3 #space2 {
-  left: 56.4%;
 }
 
 #frame5 #name1 {
@@ -248,7 +242,7 @@ body {
 #frame3 #space1 {
   position: absolute;
   top: 59%;
-  left: 42%;
+  left: 38%;
   font-size: 1.2rem;
 }
 
@@ -256,7 +250,7 @@ body {
 #frame3 #space2 {
   position: absolute;
   top: 57%;
-  left: 62%;
+  left: 54.4%;
   font-size: 1.2rem;
 }
 
