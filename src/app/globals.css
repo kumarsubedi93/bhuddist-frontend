@@ -146,7 +146,7 @@ body {
 #frame2 #name2 {
   display: flex;
   flex-direction: column;
-  bottom: -1%;
+  bottom: -2%;
   position: absolute;
   left: 20px !important;
   font-size: 2.1rem;
